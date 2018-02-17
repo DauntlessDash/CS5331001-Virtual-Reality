@@ -1,373 +1,70 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
-    <script src="libs/aframe.min.js"></script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Example Scene</title>
+    <script src="https://rawgit.com/aframevr/aframe/master/dist/aframe-master.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene debug="true">
+      <a-assets>
+        <a-mixin id="blue" material="color: #4CC3D9"></a-mixin>
+        <a-mixin id="blueBox" geometry="primitive: box; depth: 2; height: 5; width: 1" material="color: #4CC3D9"></a-mixin>
+        <a-mixin id="box" geometry="primitive: box; depth: 1; height: 1; width: 1"></a-mixin>
+        <a-mixin id="cylinder" geometry="primitive: cylinder; height: 0.3; radius: 0.75; segmentsRadial: 6"></a-mixin>
+        <a-mixin id="green" material="color: #7BC8A4"></a-mixin>
+        <a-mixin id="orange" material="color: #F16745"></a-mixin>
+        <a-mixin id="purple" material="color: #93648D"></a-mixin>
+        <a-mixin id="short" scale="1 0.5 1"></a-mixin>
+        <a-mixin id="yellow" material="color: #FFC65D"></a-mixin>
+        <img id="crateImg" src="https://aframe.io/sample-assets/assets/images/wood/crate.gif" crossOrigin="true">
+        <img id="floorImg" src="https://aframe.io/sample-assets/assets/images/terrain/grasslight-big.jpg" crossOrigin="true">
+      </a-assets>
 
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v1.14.0/dist/aframe-extras.min.js"></script>
-<style></style><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%7CRoboto+Mono" media="all" /></head>
-<body class="a-body ">
+      <a-entity id="environment" environment="preset: forest; fog: false"></a-entity>
 
-<a-scene class="fullscreen" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui=""><canvas class="a-canvas" data-aframe-canvas="true" width="300" height="150"></canvas>
-    <a-assets>
-        <audio id="blip1" src="assets/horned_owl.wav"></audio>
-        <a-asset-item id="drone" src="assets/busterDrone.gltf">
-    </a-asset-item></a-assets>
-    <a-sky color="#ECECEC" material="" geometry=""></a-sky>
-    <a-entity position="54 1.5 12">
-        <!--<a-camera universal-controls>
-            <a-entity raycaster="far: 150; objects: .intersectable" cursor geometry="primitive: ring; radiusOuter: 0.015;
-                              radiusInner: 0.01; segmentsTheta: 32" material="color: #283644; shader: flat" position="0 0 -0.75"></a-entity>
-        </a-camera> -->
-    </a-entity>
-    <a-gltf-model src="#drone" position="0 5 0" animation-mixer="" gltf-model="assets/busterDrone.gltf"></a-gltf-model>
-    <a-box color="tomato" position="45 0 6" depth="2" height="2" width="2" class="intersectable" material="" geometry="">
-       <a-animation begin="click" attribute="position" from="45 0 6" to="45 0 -10" dur="3000"></a-animation>
-    </a-box>
-    <a-box material="opacity:0;transparent:true;color:tomato" depth="2" height="2" width="2" sound="src:assets/horned_owl.wav;on:click" class="intersectable" position="55 1.5 6" geometry=""></a-box>
-    <a-obj-model src="assets/AngryBirdsRedsMask.obj" mtl="assets/AngryBirdsRedsMask.mtl" position="55 1.5 6" material="" obj-model=""></a-obj-model>
-    <a-entity collada-model="assets/stormtrooper.dae" rotation="90 0 0" position="60 0 6"></a-entity>
+      <!-- Meshes. -->
+      <a-entity id="blueBox" mixin="blueBox" position="0 8 0"></a-entity>
+      <a-entity id="shortOrangeBox" mixin="short orange box" position="-5 2 0"></a-entity>
+      <a-entity id="shortYellowBox" mixin="short yellow box" position="5 2 0"></a-entity>
+      <a-entity id="redBox" geometry="primitive: box" material="color:#f00" position="-4 1 0">
+        <a-animation attribute="rotation" to="0 360 0" repeat="indefinite" easing="linear" dur="9600"></a-animation>
+      </a-entity>
+      <a-entity id="yellowSphere" geometry="primitive: sphere" material="color:#ff0; metalness:0.0; roughness:1.0" position="-2 2 -2"></a-entity>
+      <a-box src="https://aframe.io/sample-assets/assets/images/bricks/brick_bump.jpg" position="-5 5 -2" width="1" color="#F16745"></a-box>
+      <a-box id="box" position="0 2 0" height="2" color="#FFC65D"></a-box>
 
+      <!-- Models. -->
+      <a-entity class="boxClass" geometry="primitive: box" material="src: #crateImg" position="3 4 0"></a-entity>
+      <a-entity class="boxClass" geometry="primitive: box" material="color: #0f0" position="4 2 4"></a-entity>
 
-    <!-- Ceiling -->
-    <a-entity static-body="" geometry="depth:50;height:0.1;width:160" position="0 14 5" material="shader:flat;side:double;src:images/ceiling2.jpg;repeat:20 12"></a-entity>
-    <!-- Floor -->
-    <a-entity static-body="" geometry="depth:50;height:0.1;width:160" position="0 -0.5 5" material="shader:flat;side:double;src:images/hardwood.jpg;repeat:12 5"></a-entity>
+      <!-- Floor. -->
+      <a-entity id="floor" geometry="primitive: box; height: .2; depth: 24; width: 24"
+                material="src: #floorImg; color: #fafafa; metalness: .1; repeat: 50 20; roughness: 1"></a-entity>
 
-    <!-- Trim -->
-    <a-entity geometry="depth:0.6;width:160" position="0 13.5 -19.7" material="roughness:1;src:images/trim.jpg;repeat:32 1"></a-entity>
-    <a-entity geometry="depth:0.6;width:160" position="0 13.5 29.7" material="roughness:1;src:images/trim.jpg;repeat:32 1"></a-entity>
-    <a-entity geometry="depth:0.6;width:50" position="79.7 13.5 5" rotation="0 90 0" material="roughness:1;src:images/trim.jpg;repeat:9 1"></a-entity>
-    <a-entity geometry="depth:0.6;width:50" position="-79.7 13.5 5" rotation="0 90 0" material="roughness:1;src:images/trim.jpg;repeat:9 1"></a-entity>
+      <!-- Lights. -->
+      <a-entity id="pointLight" light="type: point; intensity: 0.25" position="0 3 3"></a-entity>
 
-    <!-- H Beams  -->
-    <a-entity geometry="width:50" position="0 13.5 5" rotation="0 90 0" material="roughness:1;src:images/beam.jpg;repeat:2 1"></a-entity>
-    <a-entity geometry="width:50" position="-20 13.5 5" rotation="0 90 0" material="roughness:1;src:images/beam.jpg;repeat:2 1"></a-entity>
-    <a-entity geometry="width:50" position="20 13.5 5" rotation="0 90 0" material="roughness:1;src:images/beam.jpg;repeat:2 1"></a-entity>
-    <a-entity geometry="width:50" position="-40 13.5 5" rotation="0 90 0" material="roughness:1;src:images/beam.jpg;repeat:2 1"></a-entity>
-    <a-entity geometry="width:50" position="40 13.5 5" rotation="0 90 0" material="roughness:1;src:images/beam.jpg;repeat:2 1"></a-entity>
-    <a-entity geometry="width:50" position="-60 13.5 5" rotation="0 90 0" material="roughness:1;src:images/beam.jpg;repeat:2 1"></a-entity>
-    <a-entity geometry="width:50" position="60 13.5 5" rotation="0 90 0" material="roughness:1;src:images/beam.jpg;repeat:2 1"></a-entity>
-
-    <!-- V Beams  -->
-    <a-entity static-body="" geometry="width:13.5" position="0 6.25 -19" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="0 6.25 29" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="20 6.25 -19" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="-20 6.25 29" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="40 6.25 -19" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="-40 6.25 29" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-
-    <a-entity static-body="" geometry="width:13.5" position="-20 6.25 -19" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="20 6.25 29" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="-40 6.25 -19" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="40 6.25 29" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-
-    <a-entity static-body="" geometry="width:13.5" position="-60 6.25 -19" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="60 6.25 29" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="-79 6.25 -19" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="79 6.25 29" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-
-    <a-entity static-body="" geometry="width:13.5" position="60 6.25 -19" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="-60 6.25 29" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="79 6.25 -19" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-    <a-entity static-body="" geometry="width:13.5" position="-79 6.25 29" rotation="0 0 90" material="roughness:1;src:images/beam.jpg"></a-entity>
-
-    <!-- Walls  -->
-    <a-entity static-body="" geometry="height:14;width:50" position="39.737 6.5 -13.081" rotation="0 90 0" material="roughness:1;src:images/brick1.jpg;repeat:4 2"></a-entity>
-    <a-entity static-body="" geometry="height:14;width:50" position="80 6.5 5" rotation="0 90 0" material="roughness:1;src:images/brick1.jpg;repeat:4 2"></a-entity>
-    <a-entity static-body="" geometry="height:14;width:160" position="0 6.5 -14.683" material="roughness:1;src:images/brick1.jpg;repeat:12 2"></a-entity>
-    <a-entity static-body="" geometry="height:14;width:160" position="2.943 6.5 25.285" material="roughness:1;src:images/brick1.jpg;repeat:12 2"></a-entity>
-
-    <!-- Columns -->
-    <a-entity static-body="" geometry="primitive:cylinder;radius:5;height:14;segmentsRadial:8" position="-30 6.5 5" material="src:images/brick3.jpg;repeat:2 2"></a-entity>
-    <a-entity static-body="" geometry="primitive:cylinder;radius:7;height:5;segmentsRadial:8" position="-30 14.6 5" material="src:images/brick3.jpg;repeat:2 1"></a-entity>
-    <a-entity static-body="" geometry="primitive:cylinder;radius:7;height:5;segmentsRadial:8" position="-30 -1 5" material="src:images/brick3.jpg;repeat:2 1"></a-entity>
-
-    <a-entity static-body="" geometry="primitive:cylinder;radius:5;height:14;segmentsRadial:8" position="30 6.5 5" material="src:images/brick3.jpg;repeat:2 2"></a-entity>
-    <a-entity static-body="" geometry="primitive:cylinder;radius:7;height:5;segmentsRadial:8" position="30 14.6 5" material="src:images/brick3.jpg;repeat:2 1"></a-entity>
-    <a-entity static-body="" geometry="primitive:cylinder;radius:7;height:5;segmentsRadial:8" position="30 -1 5" material="src:images/brick3.jpg;repeat:2 1"></a-entity>
-
-    <!-- Banners -->
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="-60 8.5 26" rotation="0 90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="-0.9 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="-60.01 8.5 26" rotation="0 270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="-40 8.5 26" rotation="0 90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="-0.9 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="-40.01 8.5 26" rotation="0 270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="-20 8.5 26" rotation="0 90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="-0.9 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="-20.01 8.5 26" rotation="0 270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="0 8.5 26" rotation="0 90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="-0.9 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="-0.01 8.5 26" rotation="0 270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="60 8.5 26" rotation="0 -90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="0.9 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="60.01 8.5 26" rotation="0 -270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="40 8.5 26" rotation="0 -90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="0.9 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="40.01 8.5 26" rotation="0 -270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="20 8.5 26" rotation="0 -90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="0.9 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="20.01 8.5 26" rotation="0 -270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-    <!-- -->
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="60 8.5 -16" rotation="0 -90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="-1 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="60.01 8.5 -16" rotation="0 270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="40 8.5 -16" rotation="0 -90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="-1 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="40.01 8.5 -16" rotation="0 270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="20 8.5 -16" rotation="0 -90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="-1 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="20.01 8.5 -16" rotation="0 270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="0 8.5 -16" rotation="0 -90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="-1 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="0.01 8.5 -16" rotation="0 270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="-60 8.5 -16" rotation="0 -90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="-1 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="-60.01 8.5 -16" rotation="0 270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="-40 8.5 -16" rotation="0 -90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="-1 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="-40.01 8.5 -16" rotation="0 270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="-20 8.5 -16" rotation="0 -90 0" material="shader:flat;side:double;transparent:true;src:images/banner.png"><a-entity geometry="primitive:cylinder;radius:0.1;height:4" position="-1 3.5 0" rotation="0 0 90" material="src:images/torch2.jpg"></a-entity></a-entity>
-    <a-entity geometry="primitive:plane;height:7;width:1.5" position="-20.01 8.5 -16" rotation="0 270 0" material="shader:flat;side:double;transparent:true;src:images/banner0.png"></a-entity>
-
-    <!-- Torch -->
-    <a-entity geometry="primitive:cylinder;radius:0.3;height:5" position="25 4 5" rotation="-40 90 0" material="src:images/torch2.jpg"></a-entity>
-    <a-entity geometry="primitive:sphere;radius:0.6" position="23.4 6.2 5" material="color:#222">
-        <a-entity geometry="primitive:cylinder;radius:0.6;height:0.5" position="0 0.3 0" material="color:#222"></a-entity>
-        <a-entity geometry="primitive:plane" position="0 0.914888888888889 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-            <a-animation attribute="position" to="0 0.95 0" easing="linear" repeat="indefinite" dur="450"></a-animation>
+      <!-- Camera. -->
+      <a-entity id="cameraWrapper" position="0 1.6 8">
+        <a-entity id="camera" camera look-controls wasd-controls>
+          <!-- Cursor. -->
+          <a-entity id="cursor" position="0 0 -2"
+                    geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01"
+                    material="color: #ff9; shader: flat; transparent: true; opacity: 0.5"
+                    scale="2 2 2" raycaster>
+          </a-entity>
         </a-entity>
-        <a-entity geometry="primitive:plane" position="0 0.9284 0" rotation="0 90 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-            <a-animation attribute="position" to="0 0.95 0" easing="linear" repeat="indefinite" dur="500"></a-animation>
-        </a-entity>
-    </a-entity>
+      </a-entity>
 
-    <!-- Torch -->
-    <a-entity geometry="primitive:cylinder;radius:0.3;height:5" position="35 4 5" rotation="-40 -90 0" material="src:images/torch2.jpg"></a-entity>
-    <a-entity geometry="primitive:sphere;radius:0.6" position="36.6 6.2 5" material="color:#222">
-        <a-entity geometry="primitive:cylinder;radius:0.6;height:0.5" position="0 0.3 0" material="color:#222"></a-entity>
-        <a-entity geometry="primitive:plane" position="0 0.914888888888889 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-            <a-animation attribute="position" to="0 0.95 0" easing="linear" repeat="indefinite" dur="450"></a-animation>
-        </a-entity>
-        <a-entity geometry="primitive:plane" position="0 0.9284 0" rotation="0 90 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-            <a-animation attribute="position" to="0 0.95 0" easing="linear" repeat="indefinite" dur="500"></a-animation>
-        </a-entity>
-    </a-entity>
+      <a-entity id="leftHand" laser-controls="hand: left"></a-entity>
+      <a-entity id="rightHand" laser-controls="hand: right"></a-entity>
+    </a-scene>
 
-    <!-- Torch -->
-    <a-entity geometry="primitive:cylinder;radius:0.3;height:5" position="-35 4 5" rotation="-40 90 0" material="src:images/torch2.jpg"></a-entity>
-    <a-entity geometry="primitive:sphere;radius:0.6" position="-36.6 6.2 5" material="color:#222">
-        <a-entity geometry="primitive:cylinder;radius:0.6;height:0.5" position="0 0.3 0" material="color:#222"></a-entity>
-        <a-entity geometry="primitive:plane" position="0 0.914888888888889 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-            <a-animation attribute="position" to="0 0.95 0" easing="linear" repeat="indefinite" dur="450"></a-animation>
-        </a-entity>
-        <a-entity geometry="primitive:plane" position="0 0.9284 0" rotation="0 90 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-            <a-animation attribute="position" to="0 0.95 0" easing="linear" repeat="indefinite" dur="500"></a-animation>
-        </a-entity>
-    </a-entity>
+    <script src="../dist/aframe-inspector.js"></script>
 
-    <!-- Torch -->
-    <a-entity geometry="primitive:cylinder;radius:0.3;height:5" position="-25 4 5" rotation="-40 -90 0" material="src:images/torch2.jpg"></a-entity>
-    <a-entity geometry="primitive:sphere;radius:0.6" position="-23.4 6.2 5" material="color:#222">
-        <a-entity geometry="primitive:cylinder;radius:0.6;height:0.5" position="0 0.3 0" material="color:#222"></a-entity>
-        <a-entity geometry="primitive:plane" position="0 0.914888888888889 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-            <a-animation attribute="position" to="0 0.95 0" easing="linear" repeat="indefinite" dur="450"></a-animation>
-        </a-entity>
-        <a-entity geometry="primitive:plane" position="0 0.9284 0" rotation="0 90 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-            <a-animation attribute="position" to="0 0.95 0" easing="linear" repeat="indefinite" dur="500"></a-animation>
-        </a-entity>
-    </a-entity>
-
-
-    <!-- Front Product -->
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="5.5 4.5 -18.98" material="shader:flat;transparent:true;src:images/Fake-Lighter.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="5.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="-5.5 4.4 -18.98" material="shader:flat;transparent:true;src:images/Flash-Video.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="-5.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="14.5 4.5 -18.98" material="shader:flat;transparent:true;src:images/Flash-Audio.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="14.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="-14.5 4.5 -18.98" material="shader:flat;transparent:true;src:images/Audio-Recorder.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="-14.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="25.5 4.5 -18.98" material="shader:flat;transparent:true;src:images/Spy-Pen.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="25.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="-25.5 4.5 -18.98" material="shader:flat;transparent:true;src:images/Key-Remote.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="-25.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="34.5 4.5 -18.98" material="shader:flat;transparent:true;src:images/Key-Remote-HD.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="34.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="-34.5 4.5 -18.98" material="shader:flat;transparent:true;src:images/Wrist-Watch.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="-34.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="45.5 4.5 -18.98" material="shader:flat;transparent:true;src:images/Sunglasses.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="45.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="-45.5 4.5 -18.98" material="shader:flat;transparent:true;src:images/Eyeglasses.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="-45.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="54.5 4.5 -18.98" material="shader:flat;transparent:true;src:images/Shirt-Button.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="54.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="-54.5 4.5 -18.98" material="shader:flat;transparent:true;src:images/Microphone.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="-54.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="65.5 4.5 -18.98" material="shader:flat;transparent:true;src:images/Smoke-Detector.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="65.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="-65.5 4.5 -18.98" material="shader:flat;transparent:true;src:images/Jacket-Hook.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="-65.5 4.2 -19.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <!--
-    <a-entity geometry="primitive: plane; height: 8.8; width: 6.2" position="74.5 4.5 -18.98" rotation="0 0 0" material="shader: flat; transparent: true;
-    src: url(images/______.png)"></a-entity>
-    <a-entity geometry="primitive: box; depth: 1; height: 11; width: 8" position="74.5 4.2 -19.5" rotation="0 0 0" material="shader: standard;
-    roughness: 1; src: url(images/mount.jpg); repeat: 1 2"></a-entity>
-
-    <a-entity geometry="primitive: plane; height: 8.8; width: 6.2" position="-74.5 4.5 -18.98" rotation="0 0 0" material="shader: flat; transparent: true;
-    src: url(images/______.png)"></a-entity>
-    <a-entity geometry="primitive: box; depth: 1; height: 11; width: 8" position="-74.5 4.2 -19.5" rotation="0 0 0" material="shader: standard;
-    roughness: 1; src: url(images/mount.jpg); repeat: 1 2"></a-entity>
-    -->
-
-    <!-- Back Product -->
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="5.5 4.5 28.98" rotation="0 180 0" material="shader:flat;transparent:true;src:images/Hook-Remote.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="5.5 4.2 29.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="-5.5 4.5 28.98" rotation="0 180 0" material="shader:flat;transparent:true;src:images/Key-Fobs.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="-5.5 4.2 29.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="14.5 4.5 28.98" rotation="0 180 0" material="shader:flat;transparent:true;src:images/TV-Simulator.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="14.5 4.2 29.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="-14.5 4.5 28.98" rotation="0 180 0" material="shader:flat;transparent:true;src:images/Mini-Camera.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="-14.5 4.2 29.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="25.5 4.5 28.98" rotation="0 180 0" material="shader:flat;transparent:true;src:images/MicroSDHC-8GB.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="25.5 4.2 29.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="-25.5 4.5 28.98" rotation="0 180 0" material="shader:flat;transparent:true;src:images/MicroSDHC-32GB.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="-25.5 4.2 29.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="34.5 4.5 28.98" rotation="0 180 0" material="shader:flat;transparent:true;src:images/Bug-Finder.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="34.5 4.2 29.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="-34.5 4.5 28.98" rotation="0 180 0" material="shader:flat;transparent:true;src:images/Lockpicks.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="-34.5 4.2 29.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="45.5 4.5 28.98" rotation="0 180 0" material="shader:flat;transparent:true;src:images/Personal-Alarm.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="45.5 4.2 29.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="-45.5 4.5 28.98" rotation="0 180 0" material="shader:flat;transparent:true;src:images/Tactical-Pen.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="-45.5 4.2 29.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="54.5 4.5 28.98" rotation="0 180 0" material="shader:flat;transparent:true;src:images/Dummy-Cam.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="54.5 4.2 29.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <a-entity geometry="primitive:plane;height:8.8;width:6.2" position="-54.5 4.5 28.98" rotation="0 180 0" material="shader:flat;transparent:true;src:images/Dummy-Outdoor.png"></a-entity>
-    <a-entity geometry="height:11;width:8" position="-54.5 4.2 29.5" material="roughness:1;src:images/mount.jpg;repeat:1 2"></a-entity>
-
-    <!--
-    <a-entity geometry="primitive: plane; height: 8.8; width: 6.2" position="65.5 4.5 28.98" rotation="0 180 0" material="shader: flat; transparent: true;
-    src: url(images/_____.png)"></a-entity>
-    <a-entity geometry="primitive: box; depth: 1; height: 11; width: 8" position="65.5 4.2 29.5" rotation="0 0 0" material="shader: standard;
-    roughness: 1; src: url(images/mount.jpg); repeat: 1 2"></a-entity>
-
-    <a-entity geometry="primitive: plane; height: 8.8; width: 6.2" position="-65.5 4.5 28.98" rotation="0 180 0" material="shader: flat; transparent: true;
-    src: url(images/______.png)"></a-entity>
-    <a-entity geometry="primitive: box; depth: 1; height: 11; width: 8" position="-65.5 4.2 29.5" rotation="0 0 0" material="shader: standard;
-    roughness: 1; src: url(images/mount.jpg); repeat: 1 2"></a-entity>
-
-    <a-entity geometry="primitive: plane; height: 8.8; width: 6.2" position="74.5 4.5 28.98" rotation="0 180 0" material="shader: flat; transparent: true;
-    src: url(images/______.png)"></a-entity>
-    <a-entity geometry="primitive: box; depth: 1; height: 11; width: 8" position="74.5 4.2 29.5" rotation="0 0 0" material="shader: standard;
-    roughness: 1; src: url(images/mount.jpg); repeat: 1 2"></a-entity>
-
-    <a-entity geometry="primitive: plane; height: 8.8; width: 6.2" position="-74.5 4.5 28.98" rotation="0 180 0" material="shader: flat; transparent: true;
-    src: url(images/______.png)"></a-entity>
-    <a-entity geometry="primitive: box; depth: 1; height: 11; width: 8" position="-74.5 4.2 29.5" rotation="0 0 0" material="shader: standard;
-    roughness: 1; src: url(images/mount.jpg); repeat: 1 2"></a-entity>
-    -->
-
-    <!-- Welcome -->
-    <a-entity geometry="primitive:plane;height:6.9;width:10" position="0 9.2 -1" material="shader:flat;side:double;transparent:true;src:images/welcome.png">
-        <a-entity geometry="primitive:plane;height:6.9;width:10" position="0 0 -0.01" rotation="0 180 0" material="shader:flat;side:double;transparent:true;src:images/welcome-back.png"></a-entity>
-        <a-entity geometry="primitive:cylinder;radius:0.2;height:11" position="0 3.5 0" rotation="90 90 0" material="src:images/torch2.jpg"></a-entity>
-    </a-entity>
-
-    <!-- Chair -->
-    <a-entity geometry="depth:2;height:0.3;width:2" position="54 0.5 8" rotation="0 100 0" material="roughness:1;src:images/mount.jpg">
-        <a-entity geometry="depth:0.3;height:1.2;width:0.3" position="0.8 -0.5 0.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity geometry="depth:0.3;height:1.2;width:0.3" position="-0.8 -0.5 0.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity geometry="depth:0.3;height:1.2;width:0.3" position="0.8 -0.5 -0.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity geometry="depth:0.3;height:1.2;width:0.3" position="-0.8 -0.5 -0.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity geometry="height:0.3;width:2" position="-1 1 0" rotation="80 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity geometry="depth:0.2;height:1.1;width:0.3" position="-0.9 0.5 0.8" rotation="-10 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity geometry="depth:0.2;height:1.1;width:0.3" position="-0.9 0.5 -0.8" rotation="-10 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-    </a-entity>
-    <!-- Chair -->
-    <a-entity geometry="depth:2;height:0.3" position="55.5 0.5 2" rotation="0 250 0" material="roughness:1;src:images/mount.jpg">
-        <a-entity geometry="depth:0.3;height:1.2;width:0.3" position="0.8 -0.5 0.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity geometry="depth:0.3;height:1.2;width:0.3" position="-0.8 -0.5 0.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity geometry="depth:0.3;height:1.2;width:0.3" position="0.8 -0.5 -0.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity geometry="depth:0.3;height:1.2;width:0.3" position="-0.8 -0.5 -0.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity geometry="height:0.3;width:2" position="-1 1 0" rotation="80 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity geometry="depth:0.2;height:1.1;width:0.3" position="-0.9 0.5 0.8" rotation="-10 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity geometry="depth:0.2;height:1.1;width:0.3" position="-0.9 0.5 -0.8" rotation="-10 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-    </a-entity>
-
-    <!-- Table -->
-    <a-entity static-body="" geometry="depth:8;height:0.3;width:3" position="54 1.2 5" rotation="0 90 0" material="roughness:1;src:images/mount.jpg">
-        <a-entity static-body="" geometry="depth:0.3;height:2.2;width:0.3" position="-1.2 -1 3.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity static-body="" geometry="depth:0.3;height:2.2;width:0.3" position="1.2 -1 3.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity static-body="" geometry="depth:0.3;height:2.2;width:0.3" position="1.2 -1 -3.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity static-body="" geometry="depth:0.3;height:2.2;width:0.3" position="-1.2 -1 -3.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-
-        <a-entity geometry="primitive:plane;height:0.8;width:0.4" position="0.5 0.55 -1" rotation="0 90 0" material="shader:flat;side:double;transparent:true;src:images/bug-finder-product.png"></a-entity>
-        <a-entity geometry="primitive:circle;radius:0.1" position="0.5 0.17 0.5" rotation="90 35 0" material="shader:flat;side:double;transparent:true;src:images/coin.png"></a-entity>
-        <a-entity geometry="primitive:circle;radius:0.1" position="1.3 0.17 0.6" rotation="270 90 0" material="shader:flat;side:double;transparent:true;src:images/coin.png"></a-entity>
-        <a-entity geometry="primitive:circle;radius:0.1" position="0.3 0.17 0.4" rotation="90 -40 0" material="shader:flat;side:double;transparent:true;src:images/coin.png"></a-entity>
-        <a-entity geometry="primitive:cylinder;radius:0.15;height:0.42;openEnded:true" position="0.9 0.4 1.2" material="side:double;src:images/cup.jpg;repeat:2 1"></a-entity>
-    </a-entity>
-
-    <!-- Table -->
-    <a-entity static-body="" geometry="depth:8;height:0.3;width:3" position="-54 1.2 5" rotation="0 90 0" material="roughness:1;src:images/mount.jpg">
-        <a-entity static-body="" geometry="depth:0.3;height:2.2;width:0.3" position="-1.2 -1 3.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity static-body="" geometry="depth:0.3;height:2.2;width:0.3" position="1.2 -1 3.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity static-body="" geometry="depth:0.3;height:2.2;width:0.3" position="1.2 -1 -3.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-        <a-entity static-body="" geometry="depth:0.3;height:2.2;width:0.3" position="-1.2 -1 -3.8" rotation="0 90 0" material="roughness:1;src:images/mount.jpg"></a-entity>
-
-        <a-entity geometry="depth:0.4;height:0.1;width:1.8" position="0 0.2 0" rotation="0 90 0" material="roughness:1;src:images/torch2.jpg"></a-entity>
-        <!-- Candles -->
-        <a-entity geometry="primitive:cylinder;radius:0.09;height:0.42" position="0 0.47 -0.5" rotation="0 90 0" material="side:double;src:images/candle.jpg;repeat:2 1">
-            <a-entity geometry="primitive:plane;height:0.2;width:0.1" position="0 0.32531428571428583 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-                <a-animation attribute="position" to="0 0.35 0" easing="linear" repeat="indefinite" dur="350"></a-animation>
-            </a-entity>
-            <a-entity geometry="primitive:plane;height:0.2;width:0.1" position="0 0.3219111111111112 0" rotation="0 90 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-                <a-animation attribute="position" to="0 0.35 0" easing="linear" repeat="indefinite" dur="450"></a-animation>
-            </a-entity>
-        </a-entity>
-
-        <a-entity geometry="primitive:cylinder;radius:0.09;height:0.42" position="0 0.47 0" material="side:double;src:images/candle.jpg;repeat:2 1">
-            <a-entity geometry="primitive:plane;height:0.2;width:0.1" position="0 0.33666666666666667 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-                <a-animation attribute="position" to="0 0.35 0" easing="linear" repeat="indefinite" dur="375"></a-animation>
-            </a-entity>
-            <a-entity geometry="primitive:plane;height:0.2;width:0.1" position="0 0.33512941176470595 0" rotation="0 90 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-                <a-animation attribute="position" to="0 0.35 0" easing="linear" repeat="indefinite" dur="425"></a-animation>
-            </a-entity>
-        </a-entity>
-
-        <a-entity geometry="primitive:cylinder;radius:0.09;height:0.42" position="0 0.47 0.5" rotation="0 200 0" material="side:double;src:images/candle.jpg;repeat:2 1">
-            <a-entity geometry="primitive:plane;height:0.2;width:0.1" position="0 0.31840000000000007 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-                <a-animation attribute="position" to="0 0.35 0" easing="linear" repeat="indefinite" dur="400"></a-animation>
-            </a-entity>
-            <a-entity geometry="primitive:plane;height:0.2;width:0.1" position="0 0.33271999999999996 0" rotation="0 90 0" material="shader:flat;side:double;transparent:true;src:images/fire.png">
-                <a-animation attribute="position" to="0 0.35 0" easing="linear" repeat="indefinite" dur="500"></a-animation>
-            </a-entity>
-        </a-entity>
-    </a-entity>
-</a-scene>
-
-
-</body></html>
+    <!-- Github Corner. -->
+    <a data-aframe-inspector href="https://github.com/aframevr/aframe-inspector" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#1E1E1E; color:#FAFAFA; position: absolute; bottom: 0; border: 0; left: 0; transform: rotate(180deg); z-index: 9999" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style data-aframe-inspector>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  </body>
+</html>
