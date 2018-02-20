@@ -1,12 +1,12 @@
 # The Penthouse (CS 4331)
 
-For this project I created a web-based VR Penthouse that you can walk through via a simple github URL on your computer or smartphone. This was created for a Texas Tech University class on Virtual Reality. You can play the live demo at https://dauntlessdash.github.io/VRRoom-CS4331/.
+For this project I created a web-based VR Penthouse that you can walk through via a simple github URL on your computer or smartphone. This was created for a Texas Tech University class on Virtual Reality. You can play the live demo at https://dauntlessdash.github.io/VR-Penthouse-CS4331/.
 
 #### Click the image below to watch a short video demo.
 [![ScreenShot](https://github.com/DauntlessDash/VRRoom-CS4331/blob/master/screenshots/VideoThumb.png)](https://www.youtube.com/watch?v=GXNYU2xVG3c)
 
 
-# [**LINK TO LIVE DEMO** ](https://dauntlessdash.github.io/VRRoom-CS4331/)
+# [**LINK TO LIVE DEMO** ](https://dauntlessdash.github.io/VR-Penthouse-CS4331/)
 
 ## VR Penthouse Features
 
