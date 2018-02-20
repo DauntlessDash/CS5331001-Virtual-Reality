@@ -10,7 +10,7 @@ Links to all the source code and any assets (models, textures, sounds). Make sur
 For this project I created a web-based VR Penthouse that you can walk through via a simple github URL on your computer or smartphone. This was created for a Texas Tech University class on Virtual Reality.
 
 #### Click the image below to watch a short video demo.
-[![ScreenShot](/screenshots/VideoThumb.PNG)](https://youtu.be/M5YvbRzGtl0)
+[![ScreenShot](https://github.com/DauntlessDash/VRRoom-CS4331/blob/master/screenshots/VideoThumb.png)](https://youtu.be/M5YvbRzGtl0)
 
 
 ### [**LINK TO LIVE DEMO** ](https://youtu.be/M5YvbRzGtl0)
