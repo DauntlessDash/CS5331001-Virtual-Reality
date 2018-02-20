@@ -3,16 +3,16 @@
 For this project I created a web-based VR Penthouse that you can walk through via a simple github URL on your computer or smartphone. This was created for a Texas Tech University class on Virtual Reality.
 
 #### Click the image below to watch a short video demo.
-[![ScreenShot](https://github.com/DauntlessDash/VRRoom-CS4331/blob/master/screenshots/VideoThumb.png)](https://youtu.be/M5YvbRzGtl0)
+[![ScreenShot](https://github.com/DauntlessDash/VRRoom-CS4331/blob/master/screenshots/VideoThumb.png)](https://www.youtube.com/watch?v=GXNYU2xVG3c)
 
 
-### [**LINK TO LIVE DEMO** ](https://dauntlessdash.github.io/VRRoom-CS4331/)
+# [**LINK TO LIVE DEMO** ](https://dauntlessdash.github.io/VRRoom-CS4331/)
 
 ## VR Penthouse Features
 
 The following screenshots highlight some of the different elements in the VR Penthouse.
 
-The main feature of the Penthouse that stands out is that you see central park outside of two of the windows. This is achieved by having a flat plane with the image of central park suspended a distance outside the window. Also in this area is two red leather sofas and a modern glass coffee table.
+The main feature of the Penthouse that stands out is that you see central park outside of two of the windows. This is achieved by having a flat plane with the image of central park suspended a distance outside the window. Also in this area is two red leather sofas, a modern glass coffee table, and in the background you can see a shelf in the kitchen.
 
 ![Alt text](https://github.com/DauntlessDash/VRRoom-CS4331/blob/master/screenshots/Screenshot1.png)
 
@@ -34,7 +34,7 @@ Outside of the door is my dog, Beau. He is permanently spinning and might get di
 
 ![Alt text](https://github.com/DauntlessDash/VRRoom-CS4331/blob/master/screenshots/Screenshot5.png)
 
-Here there is two more L-shaped couches and the main TV of the house.
+Here there is two more L-shaped couches, a glass coffee table, and the main TV of the house.
 
 ![Alt text](https://github.com/DauntlessDash/VRRoom-CS4331/blob/master/screenshots/Screenshot6.png)
 
@@ -44,6 +44,6 @@ And finally there is a glass front door and a dresser nearby.
 
 ## Credits
 
-3D Models: https://www.turbosquid.com (FREE)
-Textures: http://www.wildtextures.com/ and http://www.texturex.com/
+* 3D Models: https://www.turbosquid.com (FREE)
+* Textures: http://www.wildtextures.com/ and http://www.texturex.com/
 
