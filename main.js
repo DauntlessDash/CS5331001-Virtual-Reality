@@ -37,5 +37,18 @@ document.addEventListener('DOMContentLoaded', function() {
     startButton.addEventListener('click', function (e) {
         activateSoundsForTouch();
         splash.style.display = 'none';
+        emitEvent('scene-started', ['#image-2']);
+    });
+
+    document.querySelector('#box-76').addEventListener('click', function (e) {
+        emitEvent('box-76-clicked', ['#point-light-4', '#point-light']);
+    });
+
+    document.querySelector('#box-77').addEventListener('click', function (e) {
+        emitEvent('box-77-clicked', ['#point-light-4', '#point-light']);
+    });
+
+    document.querySelector('#box-78').addEventListener('click', function (e) {
+        emitEvent('box-78-clicked', ['#point-light']);
     });
 });
