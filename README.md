@@ -42,8 +42,29 @@ And finally there is a glass front door and a dresser nearby.
 
 ![Alt text](https://github.com/DauntlessDash/VRRoom-CS4331/blob/master/screenshots/Screensho7.png)
 
-## Credits
+## 3D Models (18 Models Total)
 
-* 3D Models: https://www.turbosquid.com (FREE)
+* Red Couch (https://www.turbosquid.com/FullPreview/Index.cfm/ID/863526)
+* Glass Modern Table (Custom Made Model)
+* Floor-to-Ceiling Windows (Custom Made Model)
+* Stainless Steel Fridgerator (Custom Made Model)
+* Oven (Custom Made Model)
+* Counter Tops (Custom Made Model)
+* Kitchen Shelf with Cans of Food (Custom Made Model)
+* Kitchen Table and Chairs (https://www.turbosquid.com/FullPreview/Index.cfm/ID/500989)
+* Barstools (Custom Made Model)
+* Light Switches (Custom Made Model)
+* Master Bed (Custom Made Model)
+* Bedside Table and Lamp (Custom Made Model)
+* Spinning Dog (Custom Made Model)
+* L-shaped Couches (Custom Made Model)
+* Glass Coffee Table (Custom Made Model)
+* Front Door (Custom Made Model)
+* Flatscreen TV (Custom Made Model)
+* Dresser (Custom Made Model)
+
+
+## Textures
+
 * Textures: http://www.wildtextures.com/ and http://www.texturex.com/
 
