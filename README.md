@@ -1,20 +1,12 @@
 # The Penthouse (CS 4331)
 
-See example here: https://github.com/manorepo/Text-Visualization
-Create a 1-minute video showing the use of your application with your voice over. That video should appear on the top of your github readme file. The video can be used as a backup during your presentation just in case of something go wrong.
-Add a link to your web-based application (right after the video). You can host it on your github or your ttu personal page.
-Clearly explain the duties of each student in your group (if you work as a group).
-Describe your application by screenshots (with meaningful captions) and text. Make sure you have the list and screenshots of models.
-Links to all the source code and any assets (models, textures, sounds). Make sure you source code is well-commented.
-
 For this project I created a web-based VR Penthouse that you can walk through via a simple github URL on your computer or smartphone. This was created for a Texas Tech University class on Virtual Reality.
 
 #### Click the image below to watch a short video demo.
 [![ScreenShot](https://github.com/DauntlessDash/VRRoom-CS4331/blob/master/screenshots/VideoThumb.png)](https://youtu.be/M5YvbRzGtl0)
 
 
-### [**LINK TO LIVE DEMO** ](https://youtu.be/M5YvbRzGtl0)
-
+### [**LINK TO LIVE DEMO** ](https://dauntlessdash.github.io/VRRoom-CS4331/)
 
 ## VR Penthouse Features
 
