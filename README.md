@@ -46,11 +46,11 @@ Finally, there is a glass front door, a New York city themed canvas, and a dress
 
 In addition to normal static decorations I also included a TV remote which can be clicked in order to turn on the TV. When the TV is turned on the title screen from 'House of Cards' will fade in. 
 
-![Alt text](https://github.com/DauntlessDash/VRRoom-CS4331/blob/master/screenshots/Screenshot8.png)
+![Alt text](https://github.com/DauntlessDash/VRRoom-CS4331/blob/master/screenshots/Screenshot9.png)
 
 I also added a simple button on the wall labeled 'Call Uber'. When pressed, this button will cause a helicopter to fly across the windows in front of the red couches and then land in front of the window outside the kitchen. This is achieved by having two different helicopter models and using scaling and rotating of the model to make it appear that the helicopter is flying off in the distance.
 
-![Alt text](https://github.com/DauntlessDash/VRRoom-CS4331/blob/master/screenshots/Screenshot9.png)
+![Alt text](https://github.com/DauntlessDash/VRRoom-CS4331/blob/master/screenshots/Screenshot8.png)
 
 ## 3D Models (21 Models Total)
 
